@@ -156,7 +156,10 @@ function testRank(){
 }
 
 function testExecute(){
-  var myQuery = new QueryAPI();
+  output = myQuery.execute();
+  expectedResult = {"error":"BAD_REQUEST","data":"Cube not specified"};
+  equal( output, expectedResult, "Query with nothing to execute" );
+
   myQuery.drill("Traffic");
   myQuery.push("[Measures].[Max Quantity]")
   myQuery.slice("[Time]", ["[2000]", "[2003]"], true);
@@ -185,9 +188,9 @@ function testExecute(){
   myQuery.clear();
 
   myQuery.drill("Traffic");
-  myQuery.slice("[Time]", ["[2000]", "[2003]"], false);
+  myQuery.slice("[Time]", ["[2000]"], false);
   output = myQuery.execute();
-  expectedResult = {"error":"OK","data":[{"[Measures].[Max Quantity]":[311121],"[Time]":["[Time].[All Times].[2000]"]},{"[Measures].[Max Quantity]":[315811],"[Time]":["[Time].[All Times].[2003]"]}]};
+  expectedResult = {"error":"OK","data":[{"[Measures].[Goods Quantity]":328711,"[Time]":"[Time].[All Times].[2000]"}]};
   equal( output, expectedResult, "Query without onColumns key to define a measure" );
 
   myQuery.clear();
