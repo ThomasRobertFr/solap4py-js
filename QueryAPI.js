@@ -38,7 +38,7 @@ QueryAPI = function() {
         }
     };
 
-    this.slice = function(hierarchy, members, range = false) {
+    this.slice = function(hierarchy, members, range) {
         if (!(hierarchy in onRows)) {
             onRows[hierarchy] = new Object();
         }
@@ -51,7 +51,7 @@ QueryAPI = function() {
             delete onRows[hierarchy];
         }
     };
-
+/*
     this.switch = function(hierarchies) {
         var tmp = new Object();            
         for (var i = 0, hierarchy; hierarchy = hierarchies[i]; i++) {
@@ -60,8 +60,8 @@ QueryAPI = function() {
         }
         onRows = tmp;
     };
-
-    this.filter = function(hierarchy, members, range = false) {
+*/
+    this.filter = function(hierarchy, members, range) {
         if (!(hierarchy in where)) {
             where[hierarchy] = new Object();
         }

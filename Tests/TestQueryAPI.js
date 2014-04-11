@@ -89,7 +89,7 @@ function testProject(){
   props = Object.keys(query.getOnRows());
   equal(props.length, 0, 'Query onRows is still empty');
 }
-
+/*
 function testSwitch(){
   var query = new QueryAPI();
   query.slice("[Time]", ["[2000]","[2010]"], true);
@@ -119,7 +119,7 @@ function testSwitch(){
   props = Object.keys(query.getOnRows());
   equal(props.length, 0, 'Query onRows is still empty');
 }
-
+*/
 function testFilter(){
   var query = new QueryAPI();
   query.filter("[Time]", ["[2000]","[2010]"], true);
@@ -261,7 +261,7 @@ function runTests(){
   test(testPull.toString(), testPull);
   test(testSlice.toString(), testSlice);
   test(testProject.toString(), testProject);
-  test(testSwitch.toString(), testSwitch);
+ // test(testSwitch.toString(), testSwitch);
   test(testFilter.toString(), testFilter);
   test(testRank.toString(), testRank);
   test(testExecute.toString(), testExecute);
