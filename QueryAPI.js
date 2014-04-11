@@ -5,6 +5,22 @@ QueryAPI = function() {
     var onColumns;
     var where;
 
+    this.getFrom = function() {
+        return from;
+    };
+
+    this.getOnRows = function() {
+        return onRows;
+    };
+
+    this.getOnColumns = function() {
+        return onColumns;
+    };
+
+    this.getWhere = function() {
+        return where;
+    };
+
     this.drill = function(cube) {
         from = cube;
     };
@@ -39,7 +55,8 @@ QueryAPI = function() {
     this.switch = function(hierarchies) {
         var tmp = new Object();            
         for (var i = 0, hierarchy; hierarchy = hierarchies[i]; i++) {
-           tmp[hierarchy] = onRows[hierarchy];
+           if(onRows.hasOwnProperty(hierarchy))
+             tmp[hierarchy] = onRows[hierarchy];
         }
         onRows = tmp;
     };
@@ -98,4 +115,3 @@ QueryAPI = function() {
 
     this.clear();
 };
-
