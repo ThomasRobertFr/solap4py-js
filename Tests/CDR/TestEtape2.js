@@ -1,35 +1,56 @@
 var query = new QueryAPI();
 
-
 function test14(){
+  alert(var result = query.execute());
   equal(1, 1, '1 == 1');
 }
 
 function test15(){
+  query.drill("wrong cube");
+  query.push("[Measures].[Goods Quantity]");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test16(){
+  query.clear();
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test17(){
+  query.clear();
+  query.drill("[Traffic]");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test18(){
+  query.drill("[Traffic]");
+  query.push("wrong measure");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test19(){
+  query.clear();
+  query.drill("wrong cube");
+  query.push("wrong measure");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test20(){
+  query.clear();
+  query.drill("Traffic");
+  query.push("[Measures].[Goods Quantity]");
+  var result = query.execute()
   equal(1, 1, '1 == 1');
 }
 
 function test21(){
+  query.push("[Measures].[Max Quantity]");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 

@@ -1,19 +1,43 @@
 var query = new QueryAPI();
+query.clear();
+query.drill("Traffic");
+query.push("[Measures].[Goods Quantity]");
+var result = query.execute()
+query.push("[Measures].[Max Quantity]");
+var result = query.execute();
+query.pull('wrong measure');
+var result = query.execute();
+query.pull('[Measures].[Max Quantity]');
+var result = query.execute();
 
 
 function test24(){
+  query.slice("[wrong dimension]", ["[2000]","[2010]"], true);
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test25(){
+  query.clear();
+  query.drill("[Traffic]");
+  query.push("[Measures].[Goods Quantity]");
+  query.slice("[Time]", ["[-3]"], false);
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test26(){
+  query.clear();
+  query.drill("[Traffic]");
+  query.push("[Measures].[Goods Quantity]");
+  query.slice("[Time]", ["[2000]","[2001]"], false);
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test27(){
+  query.slice("[Zone.Name]", ["[France]","[Germany]"], false);
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
@@ -30,10 +54,14 @@ function test30(){
 }
 
 function test31(){
+  query.project("wrong hierarchy");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test32(){
+  query.project("[Zone.Name]");
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
