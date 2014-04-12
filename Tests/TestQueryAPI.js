@@ -156,6 +156,7 @@ function testRank(){
 }
 
 function testExecute(){
+  var myQuery = new QueryAPI();
   output = myQuery.execute();
   expectedResult = {"error":"BAD_REQUEST","data":"Cube not specified"};
   equal( output, expectedResult, "Query with nothing to execute" );
