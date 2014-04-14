@@ -1,7 +1,7 @@
 var query = new QueryAPI();
 
 function test14(){
-  alert(var result = query.execute());
+  var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
