@@ -90,8 +90,9 @@ QueryAPI = function() {
         where = new Object();
     };
 
-    this.explore = function(id) {
-        return send("metadata", id);
+    this.explore = function(root, withProperties, granularity) {
+        data = {"root": root, "withProperties" : withProperties, "granularity": granularity};
+        return send("metadata", data);
     };
 
     var send = function(queryType, data) {
