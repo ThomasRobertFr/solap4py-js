@@ -90,8 +90,9 @@ QueryAPI = function() {
         where = new Object();
     };
 
-    this.explore = function(id) {
-        return send("metadata", id);
+    this.explore = function(root, withProperties, granularity) {
+        var data = { "root": root, "withProperties": withProperties, "granularity": granularity };
+        return send("metadata", data);
     };
 
     var send = function(queryType, data) {
@@ -99,6 +100,7 @@ QueryAPI = function() {
             "queryType" : queryType,
             "data" : data
         };
+
         var api_data;
         $.ajax({
             url: "/analytics/api/",
@@ -106,10 +108,10 @@ QueryAPI = function() {
             dataType: 'json',
             data: JSON.stringify(query),
             async: false,
-            success: function(data) {
+	    success: function(data) {
                 api_data=data;
             }
-        });
+            });
         return api_data;
     };
 
