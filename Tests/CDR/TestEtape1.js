@@ -1,8 +1,8 @@
 var query = new QueryAPI();
 
-
 function test1(){
   var result = query.explore([]);
+  alert(result);
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
