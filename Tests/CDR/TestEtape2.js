@@ -42,7 +42,7 @@ function test19(){
 
 function test20(){
   query.clear();
-  query.drill("Traffic");
+  query.drill("[Traffic]");
   query.push("[Measures].[Goods Quantity]");
   var result = query.execute()
   equal(1, 1, '1 == 1');

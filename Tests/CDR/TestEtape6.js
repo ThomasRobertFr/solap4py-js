@@ -10,14 +10,14 @@ function test32(){
 }
 
 function test33(){
-  query.slice("[Time].[Year]", ["[1997]","[1998]"], false);
-  query.slice("[Store].[Store Country]", ["[USA]","[Canada]"], false);
+  query.slice("[Time].[Year]", ["[Time].[Year].[1997]","[Time].[Year].[1998]"], false);
+  query.slice("[Store].[Store Country]", ["[Store].[Store Country].[USA]","[Store].[Store Country].[Canada]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
 function test34(){
-  query.slice("[Time].[Quarter]", ["[1997].[Q1]","[1997].[Q3]"], false);
+  query.slice("[Time].[Quarter]", ["[Time].[Quarter].[1997].[Q1]","[Time].[Quarter].[1997].[Q3]"], false);
   var result = query.execute()
   equal(1, 1, '1 == 1');
 }
@@ -28,7 +28,7 @@ function test35(){
 }
 
 function test36(){
-  query.slice("[Store]", ["[New Brunswick]","[Quebec]"], false);
+  query.slice("[Store]", ["[Store].[New Brunswick]","[Store].[Quebec]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
@@ -46,7 +46,7 @@ function test38(){
 }
 
 function test39(){
-  query.slice("[Time].[Year]", ["[1997]","[1998]"], false);
+  query.slice("[Time].[Year]", ["[Time].[Year].[1997]","[Time].[Year].[1998]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }

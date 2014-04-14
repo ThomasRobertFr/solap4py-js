@@ -1,6 +1,6 @@
 var query = new QueryAPI();
 query.clear();
-query.drill("Traffic");
+query.drill("[Traffic]");
 query.push("[Measures].[Goods Quantity]");
 var result = query.execute()
 query.push("[Measures].[Max Quantity]");
