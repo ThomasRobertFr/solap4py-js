@@ -1,7 +1,7 @@
 var query = new QueryAPI();
 
 
-function test35(){
+function test32(){
   query.drill("[Sales]");
   query.push("[Measures].[Unit Sales]");
   query.push("[Measures].[Store Cost]");
@@ -9,74 +9,67 @@ function test35(){
   equal(1, 1, '1 == 1');
 }
 
-function test36(){
+function test33(){
   query.slice("[Time].[Year]", ["[1997]","[1998]"], false);
   query.slice("[Store].[Store Country]", ["[USA]","[Canada]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test37(){
+function test34(){
   query.slice("[Time].[Quarter]", ["[1997].[Q1]","[1997].[Q3]"], false);
   var result = query.execute()
   equal(1, 1, '1 == 1');
 }
 
-function test38(){
+function test35(){
   query.pull("[Measures].[Unit Sales]");
   equal(1, 1, '1 == 1');
 }
 
-function test39(){
+function test36(){
   query.slice("[Store]", ["[New Brunswick]","[Quebec]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test40(){
+function test37(){
   query.push("[Measures].[Unit Sales]");
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test41(){
-  query.push("[Time]");
-  var result = query.execute();
-  equal(1, 1, '1 == 1');
-}
-
-function test42(){
-  query.slice("[Time].[Year]", ["[1997]","[1998]"], false);
-  var result = query.execute();
-  equal(1, 1, '1 == 1');
-}
-
-function test43(){
-  equal(1, 1, '1 == 1');
-}
-
-function test44(){
-  query.pull("[Measures].[Unit Sales]");
-  equal(1, 1, '1 == 1');
-}
-
-function test45(){
-  equal(1, 1, '1 == 1');
-}
-
-function test46(){
+function test38(){
   query.project("[Time]");
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test47(){
+function test39(){
+  query.slice("[Time].[Year]", ["[1997]","[1998]"], false);
+  var result = query.execute();
+  equal(1, 1, '1 == 1');
+}
+
+function test40(){
+  query.pull("[Measures].[Unit Sales]");
+  equal(1, 1, '1 == 1');
+}
+
+
+function test41(){
+  query.project("[Time]");
+  var result = query.execute();
+  equal(1, 1, '1 == 1');
+}
+
+function test42(){
   query.push("[Measures].[Unit Sales]");
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test48(){
+function test43(){
   query.project("[Store]");
   var result = query.execute();
   equal(1, 1, '1 == 1');
@@ -87,6 +80,9 @@ function runTest(f){
 }
 
 function runTests(){
+  test(test32.toString(), test35);
+  test(test33.toString(), test36);
+  test(test34.toString(), test37);
   test(test35.toString(), test35);
   test(test36.toString(), test36);
   test(test37.toString(), test37);
@@ -96,11 +92,6 @@ function runTests(){
   test(test41.toString(), test41);
   test(test42.toString(), test42);
   test(test43.toString(), test43);
-  test(test44.toString(), test44);
-  test(test45.toString(), test45);
-  test(test46.toString(), test46);
-  test(test47.toString(), test47);
-  test(test48.toString(), test48);
 }
 
 runTests();

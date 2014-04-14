@@ -36,30 +36,19 @@ function test26(){
 }
 
 function test27(){
-  query.slice("[Zone.Name]", ["[France]","[Germany]"], false);
+  query.slice("[Zone.Name]", ["[Zone.Name].[France]","[Zone.Name].[Germany]"], false);
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
+
 function test28(){
-  equal(1, 1, '1 == 1');
-}
-
-function test29(){
-  equal(1, 1, '1 == 1');
-}
-
-function test30(){
-  equal(1, 1, '1 == 1');
-}
-
-function test31(){
   query.project("wrong hierarchy");
   var result = query.execute();
   equal(1, 1, '1 == 1');
 }
 
-function test32(){
+function test29(){
   query.project("[Zone.Name]");
   var result = query.execute();
   equal(1, 1, '1 == 1');

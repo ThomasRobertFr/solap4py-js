@@ -37,32 +37,32 @@ function test7(){
 }
 
 function test8(){
-  var result = query.explore(["Traffic", "[Traffic]", "[Zone.wrong]"]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.wrong]"]);
   equal(1, 1, '1 == 1');
 }
 
 function test9(){
-  var result = query.explore(["Traffic", "[Traffic]", "[Zone.Name]"]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]"], false);
   equal(1, 1, '1 == 1');
 }
 
 function test10(){
-  var result = query.explore(["Traffic", "[Traffic]", "[Zone.Name]", "[wrong]"]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[wrong]"], false);
   equal(1, 1, '1 == 1');
 }
 
 function test11(){
-  var result = query.explore(["Traffic", "[Traffic]", "[Zone.Name]", "[Name0]"]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Name0]"], false);
   equal(1, 1, '1 == 1');
 }
 
 function test12(){
-  var result = query.explore([]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Name0]"], true);
   equal(1, 1, '1 == 1');
 }
 
 function test13(){
-  var result = query.explore([]);
+  var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Name0]"], "wrong parameter");
   equal(1, 1, '1 == 1');
 }
 
