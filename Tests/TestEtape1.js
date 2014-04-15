@@ -100,13 +100,11 @@ function test11(){
 }
 
 function test12(){
- var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Zone.Name].[Name0]", "[Zone.Name].[France]"], true);
+ var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Zone.Name].[Name0]", "[Zone.Name].[France]"], true, 1);
  var props = Object.keys(result);
  equal(props.length, 2, "only error and data alright");
  equal(result["error"], "OK", "no error");
  notEqual(result["data"], null);
- notEqual(result["data"], "Invalid identifier");
- equal(1,2);
 }
 
 function test13(){
