@@ -13,7 +13,12 @@ function test32(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Unit Sales]": 266773},{"[Measures].[Store Cost]": 225627.2336}]);
+  deepEqual(result["data"], [
+  {
+    "[Measures].[Store Cost]": 225627.2336,
+    "[Measures].[Unit Sales]": 266773
+  }
+]);
 }
 
 function test33(){
@@ -24,41 +29,28 @@ function test33(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{
+  deepEqual(result["data"], [
+  {
+    "[Measures].[Store Cost]": 225627.2336,
     "[Measures].[Unit Sales]": 266773,
     "[Store]": "[Store].[All Stores].[USA]",
     "[Time]": "[Time].[1997]"
   },
   {
+    "[Measures].[Store Cost]": 220645.1136,
     "[Measures].[Unit Sales]": 259916,
     "[Store]": "[Store].[All Stores].[USA]",
     "[Time]": "[Time].[1998]"
   },
   {
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1997]"
-  },
-  {
-    "[Measures].[Unit Sales]": 46157,
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1998]"
-  },
-  {
-    "[Measures].[Store Cost]": 225627.2336,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1997]"
-  },
-  {
-    "[Measures].[Store Cost]": 220645.1136,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1998]"
-  },
-  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
     "[Store]": "[Store].[All Stores].[Canada]",
     "[Time]": "[Time].[1997]"
   },
   {
     "[Measures].[Store Cost]": 39332.5705,
+    "[Measures].[Unit Sales]": 46157,
     "[Store]": "[Store].[All Stores].[Canada]",
     "[Time]": "[Time].[1998]"
   }
@@ -74,38 +66,26 @@ function test34(){
   notEqual(result["data"], null);
   deepEqual(result["data"], [
   {
+    "[Measures].[Store Cost]": 55752.2405,
     "[Measures].[Unit Sales]": 66291,
     "[Store]": "[Store].[All Stores].[USA]",
     "[Time]": "[Time].[1997].[Q1]"
   },
   {
+    "[Measures].[Store Cost]": 55904.8694,
     "[Measures].[Unit Sales]": 65848,
     "[Store]": "[Store].[All Stores].[USA]",
     "[Time]": "[Time].[1997].[Q3]"
   },
   {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
     "[Store]": "[Store].[All Stores].[Canada]",
     "[Time]": "[Time].[1997].[Q1]"
   },
   {
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1997].[Q3]"
-  },
-  {
-    "[Measures].[Store Cost]": 55752.2405,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1997].[Q1]"
-  },
-  {
-    "[Measures].[Store Cost]": 55904.8694,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1997].[Q3]"
-  },
-  {
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1997].[Q1]"
-  },
-  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
     "[Store]": "[Store].[All Stores].[Canada]",
     "[Time]": "[Time].[1997].[Q3]"
   }
@@ -119,37 +99,18 @@ function test35(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [
-  {
-    "[Measures].[Store Cost]": 55752.2405,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1997].[Q1]"
-  },
-  {
-    "[Measures].[Store Cost]": 55904.8694,
-    "[Store]": "[Store].[All Stores].[USA]",
-    "[Time]": "[Time].[1997].[Q3]"
-  },
-  {
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1997].[Q1]"
-  },
-  {
-    "[Store]": "[Store].[All Stores].[Canada]",
-    "[Time]": "[Time].[1997].[Q3]"
-  }
-]);
+  deepEqual(result["data"], [{"[Measures].[Store Cost]": 55752.2405,"[Store]": "[Store].[All Stores].[USA]","[Time]": "[Time].[1997].[Q1]"},{"[Measures].[Store Cost]": 55904.8694,"[Store]": "[Store].[All Stores].[USA]","[Time]": "[Time].[1997].[Q3]"},{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada]","[Time]": "[Time].[1997].[Q1]"},{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada]","[Time]": "[Time].[1997].[Q3]"}]);
 }
 
 function test36(){
-  console.log("olol");
-  query.slice("[Store]", ["[Store].[Canada]", "[Store].[USA]"], false);
+  query.project("[Store].[Store Country]"); // must do
+  query.slice("[Store].[Store State]", ["[Store].[Store State].[BC]","[Store].[Store State].[CA]"], false);
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
+  deepEqual(result["data"], [{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada].[BC]","[Time]": "[Time].[1997].[Q1]"},{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada].[BC]","[Time]": "[Time].[1997].[Q3]"},{"[Measures].[Store Cost]": 14431.0851,"[Store]": "[Store].[All Stores].[USA].[CA]","[Time]": "[Time].[1997].[Q1]"},{"[Measures].[Store Cost]": 15672.8256,"[Store]": "[Store].[All Stores].[USA].[CA]","[Time]": "[Time].[1997].[Q3]"}]);
 }
 
 function test37(){
@@ -159,17 +120,53 @@ function test37(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
+  deepEqual(result["data"], [
+  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]",
+    "[Time]": "[Time].[1997].[Q1]"
+  },
+  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]",
+    "[Time]": "[Time].[1997].[Q3]"
+  },
+  {
+    "[Measures].[Store Cost]": 14431.0851,
+    "[Measures].[Unit Sales]": 16890,
+    "[Store]": "[Store].[All Stores].[USA].[CA]",
+    "[Time]": "[Time].[1997].[Q1]"
+  },
+  {
+    "[Measures].[Store Cost]": 15672.8256,
+    "[Measures].[Unit Sales]": 18370,
+    "[Store]": "[Store].[All Stores].[USA].[CA]",
+    "[Time]": "[Time].[1997].[Q3]"
+  }
+]);
 }
 
 function test38(){
-  query.project("[Time]");
+  query.project("[Time].[Year]");
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
+  deepEqual(result["data"],[
+  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]"
+  },
+  {
+    "[Measures].[Store Cost]": 63530.4251,
+    "[Measures].[Unit Sales]": 74748,
+    "[Store]": "[Store].[All Stores].[USA].[CA]"
+  }
+]);
 }
 
 function test39(){
@@ -179,7 +176,34 @@ function test39(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
+  deepEqual(result["data"], 	
+
+[
+  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]",
+    "[Time]": "[Time].[1997]"
+  },
+  {
+    "[Measures].[Store Cost]": 39332.5705,
+    "[Measures].[Unit Sales]": 46157,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]",
+    "[Time]": "[Time].[1998]"
+  },
+  {
+    "[Measures].[Store Cost]": 63530.4251,
+    "[Measures].[Unit Sales]": 74748,
+    "[Store]": "[Store].[All Stores].[USA].[CA]",
+    "[Time]": "[Time].[1997]"
+  },
+  {
+    "[Measures].[Store Cost]": 61936.3326,
+    "[Measures].[Unit Sales]": 73017,
+    "[Store]": "[Store].[All Stores].[USA].[CA]",
+    "[Time]": "[Time].[1998]"
+  }
+]);
 }
 
 function test40(){
@@ -189,19 +213,20 @@ function test40(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
+  deepEqual(result["data"], [{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada].[BC]","[Time]": "[Time].[1997]"},{"[Measures].[Store Cost]": 39332.5705,"[Store]": "[Store].[All Stores].[Canada].[BC]","[Time]": "[Time].[1998]"},{"[Measures].[Store Cost]": 63530.4251,"[Store]": "[Store].[All Stores].[USA].[CA]","[Time]": "[Time].[1997]"},{"[Measures].[Store Cost]": 61936.3326,"[Store]": "[Store].[All Stores].[USA].[CA]","[Time]": "[Time].[1998]"}]);
 }
 
 
 function test41(){
-  query.project("[Time]");
+  console.log(query.getOnRows());
+  query.project("[Time].[Year]");
+  console.log(query.getOnRows());
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
-  equal(1, 1, '1 == 1');
+  deepEqual(result["data"], [{"[Measures].[Store Cost]": 0,"[Store]": "[Store].[All Stores].[Canada].[BC]"},{"[Measures].[Store Cost]": 63530.4251,"[Store]": "[Store].[All Stores].[USA].[CA]"}]);
 }
 
 function test42(){
@@ -211,19 +236,33 @@ function test42(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
-  equal(1, 1, '1 == 1');
+  deepEqual(result["data"], [
+  {
+    "[Measures].[Store Cost]": 0,
+    "[Measures].[Unit Sales]": 0,
+    "[Store]": "[Store].[All Stores].[Canada].[BC]"
+  },
+  {
+    "[Measures].[Store Cost]": 63530.4251,
+    "[Measures].[Unit Sales]": 74748,
+    "[Store]": "[Store].[All Stores].[USA].[CA]"
+  }
+]);
 }
 
 function test43(){
-  query.project("[Store]");
+  query.project("[Store].[Store State]");
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
-  equal(1, 1, '1 == 1');
+  deepEqual(result["data"], [
+  {
+    "[Measures].[Store Cost]": 225627.2336,
+    "[Measures].[Unit Sales]": 266773
+  }
+]);
 }
 
 function runTest(f){

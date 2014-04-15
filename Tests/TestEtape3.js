@@ -9,10 +9,12 @@ function test22(){
   query.push("[Measures].[Goods Quantity]");
   query.push("[Measures].[Max Quantity]");
   query.pull('wrong measure');
-
-  var expected = {"error":"OK","data":[{"[Measures].[Goods Quantity]":4.3838366E7},{"[Measures].[Max Quantity]":407391}]};
   var result = query.execute();
-  deepEqual(result, expected, 'Tests if indeed you cannot take off a measure which was not pushed');
+  var props = Object.keys(result);
+  equal(props.length, 2, "only error and data alright");
+  equal(result["error"], "OK", "no error");
+  notEqual(result["data"], null);
+  deepEqual(result["data"], [{"[Measures].[Goods Quantity]": 43838366,"[Measures].[Max Quantity]": 407391}]);
 }
 
 function test23(){
