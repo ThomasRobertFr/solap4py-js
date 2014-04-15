@@ -13,13 +13,13 @@ function test14(){
 }
 
 function test15(){
-  query.drill("wrong cube");
+  query.drill("[wrong cube]");
   query.push("[Measures].[Goods Quantity]");
   var result = query.execute();
   var props = Object.keys(result);  
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "SERVER_ERROR", "bad request");
-  equal(result["data"], "error test");
+  equal(result["data"], "Impossible to execute the query");
 }
 
 function test16(){
@@ -44,23 +44,23 @@ function test17(){
 
 function test18(){
   query.drill("[Traffic]");
-  query.push("wrong measure");
+  query.push("[wrong measure]");
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "SERVER_ERROR", "bad request");
-  equal(result["data"], "error test");
+  equal(result["data"], "Impossible to execute the query");
 }
 
 function test19(){
   query.clear();
-  query.drill("wrong cube");
-  query.push("wrong measure");
+  query.drill("[wrong cube]");
+  query.push("[wrong measure]");
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "SERVER_ERROR", "bad request");
-  equal(result["data"], "error test");
+  equal(result["data"], "Impossible to execute the query");
 }
 
 function test20(){
@@ -82,7 +82,7 @@ function test21(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366},{"[Measures].[Max Quantity]":407391}]);
+  deepEqual(result["data"], [{"[Measures].[Goods Quantity]": 43838366,"[Measures].[Max Quantity]": 407391}]);
 }
 
 function runTest(f){

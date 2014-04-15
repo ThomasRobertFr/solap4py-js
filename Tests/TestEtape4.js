@@ -39,16 +39,40 @@ function test26(){
 function test27(){
   query.slice("[Zone.Name]", ["[Zone.Name].[France]","[Zone.Name].[Germany]"], false);
 
-  var expected = {"error":"OK","data":[{"[Zone]":"[Zone.Name].[All Zone.Names].[France]","[Measures].[Goods Quantity]":328711,"[Time]":"[Time].[All Times].[2000]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[Germany]","[Measures].[Goods Quantity]":235836,"[Time]":"[Time].[All Times].[2000]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[France]","[Measures].[Goods Quantity]":309792,"[Time]":"[Time].[All Times].[2001]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[Germany]","[Measures].[Goods Quantity]":239232,"[Time]":"[Time].[All Times].[2001]"}]};
   var result = query.execute();
-  deepEqual(result, expected, 'Tests execute() on Zone dimension');
+  var props = Object.keys(result);  
+  equal(props.length, 2, "only error and data alright");
+  equal(result["error"], "OK", "no error");
+  deepEqual(result["data"], [{"[Measures].[Goods Quantity]": 328711,"[Time]": "[Time].[All Times].[2000]","[Zone.Name]": "[Zone.Name].[All Zone.Names].[France]"},{"[Measures].[Goods Quantity]": 235836,"[Time]": "[Time].[All Times].[2000]","[Zone.Name]": "[Zone.Name].[All Zone.Names].[Germany]"},{"[Measures].[Goods Quantity]": 309792,"[Time]": "[Time].[All Times].[2001]","[Zone.Name]": "[Zone.Name].[All Zone.Names].[France]"},{"[Measures].[Goods Quantity]": 239232,"[Time]": "[Time].[All Times].[2001]","[Zone.Name]": "[Zone.Name].[All Zone.Names].[Germany]"}]);
+
 }
 
 
 function test28(){
   query.project("wrong hierarchy");
 
-  var expected = {"error":"OK","data":[{"[Zone]":"[Zone.Name].[All Zone.Names].[France]","[Measures].[Goods Quantity]":328711,"[Time]":"[Time].[All Times].[2000]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[Germany]","[Measures].[Goods Quantity]":235836,"[Time]":"[Time].[All Times].[2000]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[France]","[Measures].[Goods Quantity]":309792,"[Time]":"[Time].[All Times].[2001]"},{"[Zone]":"[Zone.Name].[All Zone.Names].[Germany]","[Measures].[Goods Quantity]":239232,"[Time]":"[Time].[All Times].[2001]"}]};
+  var expected = {"error":"OK","data":[
+    {
+      "[Measures].[Goods Quantity]": 328711,
+      "[Time]": "[Time].[All Times].[2000]",
+      "[Zone.Name]": "[Zone.Name].[All Zone.Names].[France]"
+    },
+    {
+      "[Measures].[Goods Quantity]": 235836,
+      "[Time]": "[Time].[All Times].[2000]",
+      "[Zone.Name]": "[Zone.Name].[All Zone.Names].[Germany]"
+    },
+    {
+      "[Measures].[Goods Quantity]": 309792,
+      "[Time]": "[Time].[All Times].[2001]",
+      "[Zone.Name]": "[Zone.Name].[All Zone.Names].[France]"
+    },
+    {
+      "[Measures].[Goods Quantity]": 239232,
+      "[Time]": "[Time].[All Times].[2001]",
+      "[Zone.Name]": "[Zone.Name].[All Zone.Names].[Germany]"
+    }
+  ]};
   var result = query.execute();
   deepEqual(result, expected, 'Tests if when deleting a hierarchy which is not sliced, it does not delete anything');
 }
@@ -75,5 +99,3 @@ function runTests(){
 }
 
 runTests();
-
-query.clear();
