@@ -5,6 +5,22 @@ QueryAPI = function() {
     var onColumns;
     var where;
 
+    this.getFrom = function() {
+        return from;
+    };
+
+    this.getOnRows = function() {
+        return onRows;
+    };
+
+    this.getOnColumns = function() {
+        return onColumns;
+    };
+
+    this.getWhere = function() {
+        return where;
+    };
+
     this.drill = function(cube) {
         from = cube;
     };
@@ -22,7 +38,7 @@ QueryAPI = function() {
         }
     };
 
-    this.slice = function(hierarchy, members, range = false) {
+    this.slice = function(hierarchy, members, range) {
         if (!(hierarchy in onRows)) {
             onRows[hierarchy] = new Object();
         }
@@ -35,16 +51,17 @@ QueryAPI = function() {
             delete onRows[hierarchy];
         }
     };
-
+/*
     this.switch = function(hierarchies) {
         var tmp = new Object();            
         for (var i = 0, hierarchy; hierarchy = hierarchies[i]; i++) {
-           tmp[hierarchy] = onRows[hierarchy];
+           if(onRows.hasOwnProperty(hierarchy))
+             tmp[hierarchy] = onRows[hierarchy];
         }
         onRows = tmp;
     };
-
-    this.filter = function(hierarchy, members, range = false) {
+*/
+    this.filter = function(hierarchy, members, range) {
         if (!(hierarchy in where)) {
             where[hierarchy] = new Object();
         }
@@ -73,8 +90,9 @@ QueryAPI = function() {
         where = new Object();
     };
 
-    this.explore = function(id) {
-        return send("metadata", id);
+    this.explore = function(root, withProperties, granularity) {
+        var data = { "root": root, "withProperties": withProperties, "granularity": granularity };
+        return send("metadata", data);
     };
 
     var send = function(queryType, data) {
@@ -82,6 +100,7 @@ QueryAPI = function() {
             "queryType" : queryType,
             "data" : data
         };
+
         var api_data;
         $.ajax({
             url: "/analytics/api/",
@@ -89,13 +108,12 @@ QueryAPI = function() {
             dataType: 'json',
             data: JSON.stringify(query),
             async: false,
-            success: function(data) {
+	    success: function(data) {
                 api_data=data;
             }
-        });
+            });
         return api_data;
     };
 
     this.clear();
 };
-
