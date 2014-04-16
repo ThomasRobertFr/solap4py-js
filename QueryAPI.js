@@ -1,5 +1,14 @@
-QueryAPI = function() {
+/**
+ * @class
+ */
 
+QueryAPI = function() {
+    
+    /**
+     * Cube
+     * @private
+     * @type String
+     */
     var from;
     var onRows;
     var onColumns;
