@@ -25,8 +25,7 @@ QueryAPI = function() {
         return from;
     };
     
-    
-    
+       
 	/** Returns the onRows attribute of the QueryAPI.
 	 * 
 	 * */
@@ -149,7 +148,7 @@ QueryAPI = function() {
 
     };
 
-	/** Sends the QueryAPI to be executed and returns 
+/** Sends the QueryAPI to be executed and returns 
      * a data result. 
      * */
     this.execute = function() {
