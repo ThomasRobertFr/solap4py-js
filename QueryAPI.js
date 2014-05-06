@@ -42,6 +42,9 @@ QueryAPI = function() {
         if (!(hierarchy in onRows)) {
             onRows[hierarchy] = new Object();
         }
+        if (range === undefined) {
+          range = false;
+        }
         onRows[hierarchy].members = members;
         onRows[hierarchy].range = range;
     };
@@ -108,10 +111,10 @@ QueryAPI = function() {
             dataType: 'json',
             data: JSON.stringify(query),
             async: false,
-	    success: function(data) {
-                api_data=data;
+            success: function(data) {
+              api_data=data;
             }
-            });
+        });
         return api_data;
     };
 
