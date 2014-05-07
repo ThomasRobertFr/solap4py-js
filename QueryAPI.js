@@ -1,5 +1,5 @@
 /**
- * Description
+ * Class that represents a request.
  * 
  * @class
  */
@@ -19,7 +19,7 @@ QueryAPI = function() {
 
 
 	/** Returns the from attribute of the QueryAPI.
-	 * 
+	 * @returns {String}
 	 * */
     this.getFrom = function() {
         return from;
@@ -27,7 +27,7 @@ QueryAPI = function() {
     
        
 	/** Returns the onRows attribute of the QueryAPI.
-	 * 
+	 * @returns {String}
 	 * */
     this.getOnRows = function() {
         return onRows;
@@ -35,7 +35,7 @@ QueryAPI = function() {
 
 
 	/** Returns the onColumns attribute of the QueryAPI.
-	 * 
+	 * @returns {String}
 	 * */
     this.getOnColumns = function() {
         return onColumns;
@@ -43,7 +43,7 @@ QueryAPI = function() {
 
 
 	/** Returns the where attribute of the QueryAPI.
-	 * 
+	 * @returns {String}
 	 * */
     this.getWhere = function() {
         return where;
@@ -51,19 +51,21 @@ QueryAPI = function() {
     
     
 	/** Defines the from attribute of the QueryAPI.
-	 * 
-	 * */
+	 *  @param {String} cube The cube of the QueryAPI.
+     * 
+	  */
     this.drill = function(cube) {
-	/** The cube of the QueryAPI */
-        from = cube;
+	        from = cube;
     };
     
     
     /** Adds a measure dimension on 
      * the columns, if it's not already there.
+     * @param {String} measure The measure to add on onColumns. 
+     * 
      * */
     this.push = function(measure) {
-		/** The measure to add on onColumns*/
+		
         if (!(measure in onColumns)) {
             onColumns.push(measure);
         }
@@ -71,10 +73,11 @@ QueryAPI = function() {
 
 	/** Withdraws a measure dimension of 
      * the columns, if it is on the columns.
+     * @param {String} measure The measure to withdraw on onColumns.
+     * 
      * */
     this.pull = function(measure) {
-		/** The measure to withdraw on onColumns*/
-		
+				
         index = onColumns.indexOf(measure);
         if (index != -1) {
             onColumns.splice(index, 1);
@@ -84,16 +87,13 @@ QueryAPI = function() {
 	/** Adds members of a dimension on 
      * the rows.If the dimension of the members is not already in the rows, 
      * it is added as well.
+     * @param {String} hierarchy The hierarchy of the members to add.
+     * @param {String} members The members to add.
+     * @param {Boolean} range indicates if the members beetween 
+	* the members are added or not.
      * */
     this.slice = function(hierarchy, members, range) {
-		/**
-		 * hierarchy : hierarchy of the members to add
-		 * members : members to add.
-		 * range : boolean indicating if the members beetween 
-		 * the members are added or not. 
-		 * 
-		 * */
-		
+				
         if (!(hierarchy in onRows)) {
             onRows[hierarchy] = new Object();
         }
@@ -103,11 +103,11 @@ QueryAPI = function() {
 
 	/** Withdraws a hierarchy selected of a dimension of 
      * the rows, if it is in the rows.
+     * 
+     * @param {String} hierarchy The hierarchy to withdraw.
      * */
     this.project = function(hierarchy) {
-		/**
-		 * The hierarchy to withdraw.
-		 * */
+		
         if (hierarchy in onRows) {
             delete onRows[hierarchy];
         }
@@ -127,16 +127,13 @@ QueryAPI = function() {
      * the where of the request QueryAPI.
      * If the dimension of the members is not already in the where,
      * it is added as well.
-     *
-     * */
+     *  @param {String} hierarchy The hierarchy of the members to add.
+     * @param {String} members The members to add.
+     * @param {Boolean} range indicates if the members beetween 
+	* the members are added or not.
+    */
     this.filter = function(hierarchy, members, range) {
-		/**
-		 * hierarchy : hierarchy of the members added
-		 * members : the members to add.
-		 * range : boolean indicating if the members beetween 
-		 * the members are added or not.
-		 * */
-		
+				
         if (!(hierarchy in where)) {
             where[hierarchy] = new Object();
         }
@@ -150,6 +147,9 @@ QueryAPI = function() {
 
 /** Sends the QueryAPI to be executed and returns 
      * a data result. 
+     * 
+     * @returns {String}
+     * 
      * */
     this.execute = function() {
         var data = {
@@ -173,16 +173,17 @@ QueryAPI = function() {
 
 	/** Sends the QueryAPI to be executed and returns 
      * a metadata result. 
+     * @param {String[]} root Array that contains the elements of which
+     *  we want to recover the metadata, it can contain 6 elements max.
+     * @param {Boolean} withProperties Boolean to recover the properties
+     *  of the elements of the root or not.
+     * @param {Int} granularity Enables to choose the granularity of the
+     *  members in the root. It is only necessary if there are 6 
+     * elements in the root.  
+     * 
      * */
     this.explore = function(root, withProperties, granularity) {
-		/** root : is an array that contains the elements of which we 
-		 * want to recover the metadata, it can contain 6 elements max.
-		 *  withProperties : is a boolean to know if
-		 *  it recovers the properties of the elements of the root.
-		 * 	granularity : is only necessary if there are 6 elements in the
-		 * root. It enables to choose the granularity of the members in 
-		 * the root 
-		 *  */
+		
         var data = { "root": root, "withProperties": withProperties, "granularity": granularity };
         return send("metadata", data);
     };
@@ -191,14 +192,14 @@ QueryAPI = function() {
 	/** Format the queryType and data to be in the JSON result.Then 
 	* sends the JSON results to the user.
 	* 
+	*  @param {String} queryType Type of data (data or metadata).
+     * @param {String} data Data in a JSON fomat.
+     * 
+     * @returns {JSON}
 	* */
  
     var send = function(queryType, data) {
-		
-		/**
-		 * queryType : Type of data (data or metadata).
-		 * data : data in a JSON fomat
-		 * */
+	
         var query = {
             "queryType" : queryType,
             "data" : data
