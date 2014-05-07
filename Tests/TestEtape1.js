@@ -74,12 +74,49 @@ function test8(){
 }
 
 function test9(){
+  alert("lol");
   var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]"], true);
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], [{"id":"[Zone.Name].[(All)]","list-properties":{},"caption":"(All)"},{"id":"[Zone.Name].[Name0]","list-properties":{"Traffic Cube - Zone.Name Hierarchy - Name0 Level - Geom Property":{"caption":"Geom","type":"Geometry"}},"caption":"Name0"},{"id":"[Zone.Name].[Name1]","list-properties":{"Traffic Cube - Zone.Name Hierarchy - Name1 Level - Geom Property":{"caption":"Geom","type":"Geometry"}},"caption":"Name1"},{"id":"[Zone.Name].[Name2]","list-properties":{"Traffic Cube - Zone.Name Hierarchy - Name2 Level - Geom Property":{"caption":"Geom","type":"Geometry"}},"caption":"Name2"},{"id":"[Zone.Name].[Name3]","list-properties":{"Traffic Cube - Zone.Name Hierarchy - Name3 Level - Geom Property":{"caption":"Geom","type":"Geometry"}},"caption":"Name3"}]);
+  deepEqual(result["data"], [
+  {
+    "caption": "(All)",
+    "id": "[Zone.Name].[(All)]",
+    "list-properties": {}
+  },
+  {
+    "caption": "Name0",
+    "id": "[Zone.Name].[Name0]",
+    "list-properties": {
+      "Traffic Cube - Zone.Name Hierarchy - Name0 Level - Geom Property": {
+        "caption": "Geom",
+        "type": "Geometry"
+      }
+    }
+  },
+  {
+    "caption": "Name1",
+    "id": "[Zone.Name].[Name1]",
+    "list-properties": {
+      "Traffic Cube - Zone.Name Hierarchy - Name1 Level - Geom Property": {
+        "caption": "Geom",
+        "type": "Geometry"
+      }
+    }
+  },
+  {
+    "caption": "Name2",
+    "id": "[Zone.Name].[Name2]",
+    "list-properties": {
+      "Traffic Cube - Zone.Name Hierarchy - Name2 Level - Geom Property": {
+        "caption": "Geom",
+        "type": "Geometry"
+      }
+    }
+  }
+]);
 }
 
 function test10(){
@@ -96,16 +133,118 @@ function test11(){
   equal(props.length, 2, "only error and data alright");
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
-  deepEqual(result["data"], {"[Zone.Name].[All Zone.Names].[Croatia]":{"caption":"Croatia"},"[Zone.Name].[All Zone.Names].[Switzerland]":{"caption":"Switzerland"},"[Zone.Name].[All Zone.Names].[Cyprus]":{"caption":"Cyprus"},"[Zone.Name].[All Zone.Names].[Portugal]":{"caption":"Portugal"},"[Zone.Name].[All Zone.Names].[France]":{"caption":"France"},"[Zone.Name].[All Zone.Names].[Italy]":{"caption":"Italy"},"[Zone.Name].[All Zone.Names].[United Kingdom]":{"caption":"United Kingdom"},"[Zone.Name].[All Zone.Names].[Finland]":{"caption":"Finland"},"[Zone.Name].[All Zone.Names].[Iceland]":{"caption":"Iceland"},"[Zone.Name].[All Zone.Names].[Slovakia]":{"caption":"Slovakia"},"[Zone.Name].[All Zone.Names].[Belgium]":{"caption":"Belgium"},"[Zone.Name].[All Zone.Names].[Luxembourg]":{"caption":"Luxembourg"},"[Zone.Name].[All Zone.Names].[Turkey]":{"caption":"Turkey"},"[Zone.Name].[All Zone.Names].[Norway]":{"caption":"Norway"},"[Zone.Name].[All Zone.Names].[Slovenia]":{"caption":"Slovenia"},"[Zone.Name].[All Zone.Names].[Austria]":{"caption":"Austria"},"[Zone.Name].[All Zone.Names].[Romania]":{"caption":"Romania"},"[Zone.Name].[All Zone.Names].[Czech Republic]":{"caption":"Czech Republic"},"[Zone.Name].[All Zone.Names].[Malta]":{"caption":"Malta"},"[Zone.Name].[All Zone.Names].[Lithuania]":{"caption":"Lithuania"},"[Zone.Name].[All Zone.Names].[Denmark]":{"caption":"Denmark"},"[Zone.Name].[All Zone.Names].[Estonia]":{"caption":"Estonia"},"[Zone.Name].[All Zone.Names].[The former Yugoslav Republic of Macedonia]":{"caption":"The former Yugoslav Republic of Macedonia"},"[Zone.Name].[All Zone.Names].[Hungary]":{"caption":"Hungary"},"[Zone.Name].[All Zone.Names].[Latvia]":{"caption":"Latvia"},"[Zone.Name].[All Zone.Names].[Germany]":{"caption":"Germany"},"[Zone.Name].[All Zone.Names].[Bulgaria]":{"caption":"Bulgaria"},"[Zone.Name].[All Zone.Names].[Sweden]":{"caption":"Sweden"},"[Zone.Name].[All Zone.Names].[Greece]":{"caption":"Greece"},"[Zone.Name].[All Zone.Names].[Netherlands]":{"caption":"Netherlands"},"[Zone.Name].[All Zone.Names].[Liechtenstein]":{"caption":"Liechtenstein"},"[Zone.Name].[All Zone.Names].[Ireland]":{"caption":"Ireland"},"[Zone.Name].[All Zone.Names].[Poland]":{"caption":"Poland"},"[Zone.Name].[All Zone.Names].[Spain]":{"caption":"Spain"}});
+  deepEqual(result["data"], {
+  "[Zone.Name].[All Zone.Names].[Austria]": {
+    "caption": "Austria"
+  },
+  "[Zone.Name].[All Zone.Names].[Belgium]": {
+    "caption": "Belgium"
+  },
+  "[Zone.Name].[All Zone.Names].[Bulgaria]": {
+    "caption": "Bulgaria"
+  },
+  "[Zone.Name].[All Zone.Names].[Croatia]": {
+    "caption": "Croatia"
+  },
+  "[Zone.Name].[All Zone.Names].[Cyprus]": {
+    "caption": "Cyprus"
+  },
+  "[Zone.Name].[All Zone.Names].[Czech Republic]": {
+    "caption": "Czech Republic"
+  },
+  "[Zone.Name].[All Zone.Names].[Denmark]": {
+    "caption": "Denmark"
+  },
+  "[Zone.Name].[All Zone.Names].[Estonia]": {
+    "caption": "Estonia"
+  },
+  "[Zone.Name].[All Zone.Names].[Finland]": {
+    "caption": "Finland"
+  },
+  "[Zone.Name].[All Zone.Names].[France]": {
+    "caption": "France"
+  },
+  "[Zone.Name].[All Zone.Names].[Germany]": {
+    "caption": "Germany"
+  },
+  "[Zone.Name].[All Zone.Names].[Greece]": {
+    "caption": "Greece"
+  },
+  "[Zone.Name].[All Zone.Names].[Hungary]": {
+    "caption": "Hungary"
+  },
+  "[Zone.Name].[All Zone.Names].[Iceland]": {
+    "caption": "Iceland"
+  },
+  "[Zone.Name].[All Zone.Names].[Ireland]": {
+    "caption": "Ireland"
+  },
+  "[Zone.Name].[All Zone.Names].[Italy]": {
+    "caption": "Italy"
+  },
+  "[Zone.Name].[All Zone.Names].[Latvia]": {
+    "caption": "Latvia"
+  },
+  "[Zone.Name].[All Zone.Names].[Liechtenstein]": {
+    "caption": "Liechtenstein"
+  },
+  "[Zone.Name].[All Zone.Names].[Lithuania]": {
+    "caption": "Lithuania"
+  },
+  "[Zone.Name].[All Zone.Names].[Luxembourg]": {
+    "caption": "Luxembourg"
+  },
+  "[Zone.Name].[All Zone.Names].[Malta]": {
+    "caption": "Malta"
+  },
+  "[Zone.Name].[All Zone.Names].[Netherlands]": {
+    "caption": "Netherlands"
+  },
+  "[Zone.Name].[All Zone.Names].[Norway]": {
+    "caption": "Norway"
+  },
+  "[Zone.Name].[All Zone.Names].[Poland]": {
+    "caption": "Poland"
+  },
+  "[Zone.Name].[All Zone.Names].[Portugal]": {
+    "caption": "Portugal"
+  },
+  "[Zone.Name].[All Zone.Names].[Romania]": {
+    "caption": "Romania"
+  },
+  "[Zone.Name].[All Zone.Names].[Slovakia]": {
+    "caption": "Slovakia"
+  },
+  "[Zone.Name].[All Zone.Names].[Slovenia]": {
+    "caption": "Slovenia"
+  },
+  "[Zone.Name].[All Zone.Names].[Spain]": {
+    "caption": "Spain"
+  },
+  "[Zone.Name].[All Zone.Names].[Sweden]": {
+    "caption": "Sweden"
+  },
+  "[Zone.Name].[All Zone.Names].[Switzerland]": {
+    "caption": "Switzerland"
+  },
+  "[Zone.Name].[All Zone.Names].[The former Yugoslav Republic of Macedonia]": {
+    "caption": "The former Yugoslav Republic of Macedonia"
+  },
+  "[Zone.Name].[All Zone.Names].[Turkey]": {
+    "caption": "Turkey"
+  },
+  "[Zone.Name].[All Zone.Names].[United Kingdom]": {
+    "caption": "United Kingdom"
+  }
+});
 }
 
 function test12(){
-/* var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Zone.Name].[Name1]", "[Zone.Name].[France].[EST]"], true, 0);
+ var result = query.explore(["Traffic", "[Traffic]", "[Zone]", "[Zone.Name]", "[Zone.Name].[Name1]", "[Zone.Name].[France].[EST]"], true, 0);
  var props = Object.keys(result);
  equal(props.length, 2, "only error and data alright");
  equal(result["error"], "OK", "no error");
- notEqual(result["data"], null);*/
-equal("1", "2");
+ notEqual(result["data"], null);
 }
 
 function test13(){
@@ -124,113 +263,107 @@ function testClientRemark1(){
   equal(result["error"], "OK", "no error");
   notEqual(result["data"], null);
   deepEqual(result["data"], {
-  "[Zone.Name].[All Zone.Names].[France].[#null].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Austria]": {
+    "caption": "Austria"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Belgium]": {
+    "caption": "Belgium"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Basse-Normandie]": {
-    "caption": "Basse-Normandie"
+  "[Zone.Name].[All Zone.Names].[Bulgaria]": {
+    "caption": "Bulgaria"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Bourgogne]": {
-    "caption": "Bourgogne"
+  "[Zone.Name].[All Zone.Names].[Croatia]": {
+    "caption": "Croatia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Centre]": {
-    "caption": "Centre"
+  "[Zone.Name].[All Zone.Names].[Cyprus]": {
+    "caption": "Cyprus"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Champagne-Ardenne]": {
-    "caption": "Champagne-Ardenne"
+  "[Zone.Name].[All Zone.Names].[Czech Republic]": {
+    "caption": "Czech Republic"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Haute-Normandie]": {
-    "caption": "Haute-Normandie"
+  "[Zone.Name].[All Zone.Names].[Denmark]": {
+    "caption": "Denmark"
   },
-  "[Zone.Name].[All Zone.Names].[France].[BASSIN PARISIEN].[Picardie]": {
-    "caption": "Picardie"
+  "[Zone.Name].[All Zone.Names].[Estonia]": {
+    "caption": "Estonia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[CENTRE-EST].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Finland]": {
+    "caption": "Finland"
   },
-  "[Zone.Name].[All Zone.Names].[France].[CENTRE-EST].[Auvergne]": {
-    "caption": "Auvergne"
+  "[Zone.Name].[All Zone.Names].[France]": {
+    "caption": "France"
   },
-  "[Zone.Name].[All Zone.Names].[France].[CENTRE-EST].[Rhône-Alpes]": {
-    "caption": "Rhône-Alpes"
+  "[Zone.Name].[All Zone.Names].[Germany]": {
+    "caption": "Germany"
   },
-  "[Zone.Name].[All Zone.Names].[France].[DÉPARTEMENTS D'OUTRE-MER].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Greece]": {
+    "caption": "Greece"
   },
-  "[Zone.Name].[All Zone.Names].[France].[DÉPARTEMENTS D'OUTRE-MER].[Guadeloupe]": {
-    "caption": "Guadeloupe"
+  "[Zone.Name].[All Zone.Names].[Hungary]": {
+    "caption": "Hungary"
   },
-  "[Zone.Name].[All Zone.Names].[France].[DÉPARTEMENTS D'OUTRE-MER].[Guyane]": {
-    "caption": "Guyane"
+  "[Zone.Name].[All Zone.Names].[Iceland]": {
+    "caption": "Iceland"
   },
-  "[Zone.Name].[All Zone.Names].[France].[DÉPARTEMENTS D'OUTRE-MER].[Martinique]": {
-    "caption": "Martinique"
+  "[Zone.Name].[All Zone.Names].[Ireland]": {
+    "caption": "Ireland"
   },
-  "[Zone.Name].[All Zone.Names].[France].[DÉPARTEMENTS D'OUTRE-MER].[Réunion]": {
-    "caption": "Réunion"
+  "[Zone.Name].[All Zone.Names].[Italy]": {
+    "caption": "Italy"
   },
-  "[Zone.Name].[All Zone.Names].[France].[EST].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Latvia]": {
+    "caption": "Latvia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[EST].[Alsace]": {
-    "caption": "Alsace"
+  "[Zone.Name].[All Zone.Names].[Liechtenstein]": {
+    "caption": "Liechtenstein"
   },
-  "[Zone.Name].[All Zone.Names].[France].[EST].[Franche-Comté]": {
-    "caption": "Franche-Comté"
+  "[Zone.Name].[All Zone.Names].[Lithuania]": {
+    "caption": "Lithuania"
   },
-  "[Zone.Name].[All Zone.Names].[France].[EST].[Lorraine]": {
-    "caption": "Lorraine"
+  "[Zone.Name].[All Zone.Names].[Luxembourg]": {
+    "caption": "Luxembourg"
   },
-  "[Zone.Name].[All Zone.Names].[France].[MÉDITERRANÉE].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Malta]": {
+    "caption": "Malta"
   },
-  "[Zone.Name].[All Zone.Names].[France].[MÉDITERRANÉE].[Corse]": {
-    "caption": "Corse"
+  "[Zone.Name].[All Zone.Names].[Netherlands]": {
+    "caption": "Netherlands"
   },
-  "[Zone.Name].[All Zone.Names].[France].[MÉDITERRANÉE].[Languedoc-Roussillon]": {
-    "caption": "Languedoc-Roussillon"
+  "[Zone.Name].[All Zone.Names].[Norway]": {
+    "caption": "Norway"
   },
-  "[Zone.Name].[All Zone.Names].[France].[MÉDITERRANÉE].[Provence-Alpes-Côte d'Azur]": {
-    "caption": "Provence-Alpes-Côte d'Azur"
+  "[Zone.Name].[All Zone.Names].[Poland]": {
+    "caption": "Poland"
   },
-  "[Zone.Name].[All Zone.Names].[France].[NORD - PAS-DE-CALAIS].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Portugal]": {
+    "caption": "Portugal"
   },
-  "[Zone.Name].[All Zone.Names].[France].[NORD - PAS-DE-CALAIS].[Nord - Pas-de-Calais]": {
-    "caption": "Nord - Pas-de-Calais"
+  "[Zone.Name].[All Zone.Names].[Romania]": {
+    "caption": "Romania"
   },
-  "[Zone.Name].[All Zone.Names].[France].[OUEST].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Slovakia]": {
+    "caption": "Slovakia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[OUEST].[Bretagne]": {
-    "caption": "Bretagne"
+  "[Zone.Name].[All Zone.Names].[Slovenia]": {
+    "caption": "Slovenia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[OUEST].[Pays de la Loire]": {
-    "caption": "Pays de la Loire"
+  "[Zone.Name].[All Zone.Names].[Spain]": {
+    "caption": "Spain"
   },
-  "[Zone.Name].[All Zone.Names].[France].[OUEST].[Poitou-Charentes]": {
-    "caption": "Poitou-Charentes"
+  "[Zone.Name].[All Zone.Names].[Sweden]": {
+    "caption": "Sweden"
   },
-  "[Zone.Name].[All Zone.Names].[France].[SUD-OUEST].[#null]": {
-    "caption": "#null"
+  "[Zone.Name].[All Zone.Names].[Switzerland]": {
+    "caption": "Switzerland"
   },
-  "[Zone.Name].[All Zone.Names].[France].[SUD-OUEST].[Aquitaine]": {
-    "caption": "Aquitaine"
+  "[Zone.Name].[All Zone.Names].[The former Yugoslav Republic of Macedonia]": {
+    "caption": "The former Yugoslav Republic of Macedonia"
   },
-  "[Zone.Name].[All Zone.Names].[France].[SUD-OUEST].[Limousin]": {
-    "caption": "Limousin"
+  "[Zone.Name].[All Zone.Names].[Turkey]": {
+    "caption": "Turkey"
   },
-  "[Zone.Name].[All Zone.Names].[France].[SUD-OUEST].[Midi-Pyrénées]": {
-    "caption": "Midi-Pyrénées"
-  },
-  "[Zone.Name].[All Zone.Names].[France].[ÎLE DE FRANCE].[#null]": {
-    "caption": "#null"
-  },
-  "[Zone.Name].[All Zone.Names].[France].[ÎLE DE FRANCE].[Île de France]": {
-    "caption": "Île de France"
+  "[Zone.Name].[All Zone.Names].[United Kingdom]": {
+    "caption": "United Kingdom"
   }
 });
 }
