@@ -4,7 +4,7 @@ QUnit.config.reorder = false;
 
 var query = new QueryAPI();
 
-function test14(){
+function test23(){
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
@@ -12,7 +12,7 @@ function test14(){
   equal(result["data"], "Cube not specified");
 }
 
-function test15(){
+function test24(){
   query.drill("[wrong cube]");
   query.push("[Measures].[Goods Quantity]");
   var result = query.execute();
@@ -22,7 +22,7 @@ function test15(){
   equal(result["data"], "Impossible to execute the query");
 }
 
-function test16(){
+function test25(){
   query.clear();
   var result = query.execute();
   var props = Object.keys(result);
@@ -31,7 +31,7 @@ function test16(){
   equal(result["data"], "Cube not specified");
 }
 
-function test17(){
+function test26(){
   query.clear();
   query.drill("[Traffic]");
   var result = query.execute();
@@ -42,7 +42,7 @@ function test17(){
   deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
 }
 
-function test18(){
+function test27(){
   query.drill("[Traffic]");
   query.push("[wrong measure]");
   var result = query.execute();
@@ -52,7 +52,7 @@ function test18(){
   equal(result["data"], "Impossible to execute the query");
 }
 
-function test19(){
+function test28(){
   query.clear();
   query.drill("[wrong cube]");
   query.push("[wrong measure]");
@@ -63,7 +63,7 @@ function test19(){
   equal(result["data"], "Impossible to execute the query");
 }
 
-function test20(){
+function test29(){
   query.clear();
   query.drill("[Traffic]");
   query.push("[Measures].[Goods Quantity]");
@@ -75,7 +75,7 @@ function test20(){
   deepEqual(result["data"], [{"[Measures].[Goods Quantity]":43838366}]);
 }
 
-function test21(){
+function test30(){
   query.push("[Measures].[Max Quantity]");
   var result = query.execute();
   var props = Object.keys(result);
@@ -90,14 +90,14 @@ function runTest(f){
 }
 
 function runTests(){
-  test(test14.toString(), test14);
-  test(test15.toString(), test15);
-  test(test16.toString(), test16);
-  test(test17.toString(), test17);
-  test(test18.toString(), test18);
-  test(test19.toString(), test19);
-  test(test20.toString(), test20);
-  test(test21.toString(), test21);
+  test(test23.toString(), test23);
+  test(test24.toString(), test24);
+  test(test25.toString(), test25);
+  test(test26.toString(), test26);
+  test(test27.toString(), test27);
+  test(test28.toString(), test28);
+  test(test29.toString(), test29);
+  test(test30.toString(), test30);
 
 }
 
