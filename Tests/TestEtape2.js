@@ -86,18 +86,18 @@ function test30(){
 }
 
 function runTest(f){
-  test(f.toString(), f);
+  test(f.name, f);
 }
 
 function runTests(){
-  test(test23.toString(), test23);
-  test(test24.toString(), test24);
-  test(test25.toString(), test25);
-  test(test26.toString(), test26);
-  test(test27.toString(), test27);
-  test(test28.toString(), test28);
-  test(test29.toString(), test29);
-  test(test30.toString(), test30);
+  test(test23.name, test23);
+  test(test24.name, test24);
+  test(test25.name, test25);
+  test(test26.name, test26);
+  test(test27.name, test27);
+  test(test28.name, test28);
+  test(test29.name, test29);
+  test(test30.name, test30);
 
 }
 

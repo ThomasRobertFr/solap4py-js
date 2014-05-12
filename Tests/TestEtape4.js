@@ -110,16 +110,16 @@ function test38(){
 }
 
 function runTest(f){
-  test(f.toString(), f);
+  test(f.name, f);
 }
 
 function runTests(){
-  test(test33.toString(), test33);
-  test(test34.toString(), test34);
-  test(test35.toString(), test35);
-  test(test36.toString(), test36);
-  test(test37.toString(), test37);
-  test(test38.toString(), test38);
+  test(test33.name, test33);
+  test(test34.name, test34);
+  test(test35.name, test35);
+  test(test36.name, test36);
+  test(test37.name, test37);
+  test(test38.name, test38);
 }
 
 runTests();

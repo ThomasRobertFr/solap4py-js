@@ -26,12 +26,12 @@ function test32(){
 }
 
 function runTest(f){
-  test(f.toString(), f);
+  test(f.name, f);
 }
 
 function runTests(){
-  test(test31.toString(), test31);
-  test(test32.toString(), test32);
+  test(test31.name, test31);
+  test(test32.name, test32);
 }
 
 runTests();

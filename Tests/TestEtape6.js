@@ -328,18 +328,18 @@ function runTest(f){
 }
 
 function runTests(){
-  test(test41.toString(), test41);
-  test(test42.toString(), test42);
-  test(test43.toString(), test43);
-  test(test44.toString(), test44);
-  test(test45.toString(), test45);
-  test(test46.toString(), test46);
-  test(test47.toString(), test47);
-  test(test48.toString(), test48);
-  test(test49.toString(), test49);
-  test(test50.toString(), test50);
-  test(test51.toString(), test51);
-  test(test52.toString(), test52);
+  test(test41.name, test41);
+  test(test42.name, test42);
+  test(test43.name, test43);
+  test(test44.name, test44);
+  test(test45.name, test45);
+  test(test46.name, test46);
+  test(test47.name, test47);
+  test(test48.name, test48);
+  test(test49.name, test49);
+  test(test50.name, test50);
+  test(test51.name, test51);
+  test(test52.name, test52);
 }
 
 runTests();
