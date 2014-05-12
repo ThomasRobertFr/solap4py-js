@@ -278,9 +278,7 @@ function test49(){
 
 
 function test50(){
-  console.log(query.getOnRows());
   query.project("[Time]");
-  console.log(query.getOnRows());
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
