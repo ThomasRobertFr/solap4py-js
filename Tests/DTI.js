@@ -38,7 +38,27 @@ function testDTI14(){
   query.push("[Measures].[Max Quantity]");
   query.slice("[Time]", ["[Time].[2000]","[Time].[2003]"], true);
 
-  var expected = {"error":"OK","data":[{"[Measures].[Max Quantity]":[311121],"[Time]":["[Time].[All Times].[2000]"]}, {"[Measures].[Max Quantity]":[304574],"[Time]":["[Time].[All Times].[2001]"]}, {"[Measures].[Max Quantity]":[310543],"[Time]":["[Time].[All Times].[2002]"]},{"[Measures].[Max Quantity]" [315811],"[Time]":["[Time].[All Times].[2003]"]}]};
+var expected = {
+  "error": "OK",
+  "data": [
+    {
+      "[Measures].[Max Quantity]": 311121,
+      "[Time]": "[Time].[All Times].[2000]"
+    },
+    {
+      "[Measures].[Max Quantity]": 304574,
+      "[Time]": "[Time].[All Times].[2001]"
+    },
+    {
+      "[Measures].[Max Quantity]": 310543,
+      "[Time]": "[Time].[All Times].[2002]"
+    },
+    {
+      "[Measures].[Max Quantity]": 315811,
+      "[Time]": "[Time].[All Times].[2003]"
+    }
+  ]
+} ;
   var result = query.execute();
   deepEqual(result, expected, ' ');
 }
@@ -50,8 +70,24 @@ function testDTI15(){
   query.push("[Measures].[Goods Quantity]");
   query.slice("[Time]", ["[Time].[1950]"], false);
 
-  var expected = {"error":"OK","data":[{"[Measures].[Goods Quantity]":[0],"[Time]":"[Time].[All Times].[1950]"}]};
+  var expected = {"error":"OK","data":[{"[Measures].[Goods Quantity]":0,"[Time]":"[Time].[All Times].[1950]"}]};
   var result = query.execute();
   deepEqual(result, expected, ' ');
 }
+
+function runTest(f){
+  test(f.toString(), f);
+}
+
+function runTests(){
+  test(testDTI11.toString(), testDTI11);
+  test(testDTI12.toString(), testDTI12);
+  test(testDTI13.toString(), testDTI13);
+  test(testDTI14.toString(), testDTI14);
+  test(testDTI15.toString(), testDTI15);
+}
+
+runTests();
+
+query.clear();
 
