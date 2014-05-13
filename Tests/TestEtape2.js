@@ -18,7 +18,7 @@ function test24(){
   var result = query.execute();
   var props = Object.keys(result);  
   equal(props.length, 2, "only error and data alright");
-  equal(result["error"], "SERVER_ERROR", "bad request");
+  equal(result["error"], "SERVER_ERROR", "server error");
   equal(result["data"], "Impossible to execute the query");
 }
 
@@ -48,7 +48,7 @@ function test27(){
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
-  equal(result["error"], "SERVER_ERROR", "bad request");
+  equal(result["error"], "SERVER_ERROR", "server error");
   equal(result["data"], "Impossible to execute the query");
 }
 
@@ -59,7 +59,7 @@ function test28(){
   var result = query.execute();
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
-  equal(result["error"], "SERVER_ERROR", "bad request");
+  equal(result["error"], "SERVER_ERROR", "server error");
   equal(result["data"], "Impossible to execute the query");
 }
 
