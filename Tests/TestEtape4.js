@@ -9,7 +9,6 @@ function test33(){
   query.drill("[Traffic]");
   query.slice("[wrong dimension]", ["[wrong dimension].[2000]","[wrong dimension].[2010]"], false);
   var expected = "SERVER_ERROR";
-  console.log("test24");
   resultat = query.execute()["error"];
   deepEqual(resultat, expected, "Tests if an error is returned when the dimension doesn't exist");
 }
