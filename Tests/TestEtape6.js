@@ -58,7 +58,7 @@ function test42(){
 }
 
 function test43(){
-  query.slice("[Time]", ["[Time].[1997].[Q1]","[Time].[1997].[Q3]"], false);
+  query.slice("[Time]", ["[Time].[Year].[1997].[Q1]","[Time].[Year].[1997].[Q3]"], false);
   var result = query.execute()
   var props = Object.keys(result);
   equal(props.length, 2, "only error and data alright");
