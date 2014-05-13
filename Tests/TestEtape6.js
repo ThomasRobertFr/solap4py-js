@@ -22,7 +22,7 @@ function test41(){
 }
 
 function test42(){
-  query.slice("[Time]", ["[Time].[1997]","[Time].[1998]"], false);
+  query.slice("[Time]", ["[Time].[Year].[1997]","[Time].[Year].[1998]"], false);
   query.slice("[Store]", ["[Store].[Store Country].[USA]","[Store].[Store Country].[Canada]"], false);
   var result = query.execute();
   var props = Object.keys(result);
